@@ -16,4 +16,13 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             # do not serialize the password, its a security breach
+            "password": self.password,
+            is_active: self.is_active            
         }
+
+class Media(db.Model):
+    id: Mapped[int] = mapped_column(primary_key=True)
+    type: Mapped[str]= mapped_column(String(50), nullable=False)
+    url: Mapped[str]= mapped_column(String(250), nullable=False)
+    post_id: Mapped[int] = mapped_column(ForeignKey("post.id"))
+    post: Mapped["Post"] = relationship()
