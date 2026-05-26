@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import String, Boolean, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from eralchemy2 import render_er
 
 db = SQLAlchemy()
 
@@ -49,3 +50,9 @@ class Follower(db.Model):
     
     user_from: Mapped["User"] = relationship(foreign_keys=[user_from_id])
     user_to: Mapped["User"] = relationship(foreign_keys=[user_to_id])
+
+try:
+    render_er(db.Model, 'src/diagram.png')
+    print("¡Diagrama generado exitosamente en src/diagram.png!")
+except Exception as e:
+    print(f"Error al generar el diagrama: {e}")
