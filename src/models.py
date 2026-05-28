@@ -56,3 +56,4 @@ try:
     print("¡Diagrama generado exitosamente en src/diagram.png!")
 except Exception as e:
     print(f"Error al generar el diagrama: {e}")
+    
